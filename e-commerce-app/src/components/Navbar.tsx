@@ -1,7 +1,12 @@
 import React from 'react';
-import { Container, Nav, Navbar as NavbarBootstrap } from 'react-bootstrap';
+import {
+    Badge,
+    Container, Dropdown, FormControl,
+    Nav, Navbar as NavbarBootstrap
+} from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import { Button } from 'react-bootstrap';
+import { FaShoppingCart } from "react-icons/fa";
 
 function Navbar() {
     return (
@@ -18,8 +23,68 @@ function Navbar() {
                         About
                     </Nav.Link>
                 </Nav>
-                Logo
-                <Button style={{ width: "3rem", height: "3rem", position: "relative" }}
+                <NavbarBootstrap.Text className="search" style={{ marginRight: '10px' }}>
+                    <FormControl
+                        style={{ width: 500 }}
+                        type="search"
+                        placeholder="Search a product..."
+                        className="m-auto"
+                        aria-label="Search"
+                    // onChange={(e) => {
+                    //     productDispatch({
+                    //         type: "FILTER_BY_SEARCH",
+                    //         payload: e.target.value,
+                    //     });
+                    // }}
+                    />
+                </NavbarBootstrap.Text>
+                <Nav>
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success">
+
+                            <FaShoppingCart color="white" fontSize="25px" />
+                            <Badge>2</Badge>
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu style={{ minWidth: 370 }}>
+                            {/* {cart.length > 0 ? (
+                                <>
+                                    {cart.map((prod) => (
+                                        <span className="cartitem" key={prod.id}>
+                                            <img
+                                                src={prod.image}
+                                                className="cartItemImg"
+                                                alt={prod.name}
+                                            />
+                                            <div className="cartItemDetail">
+                                                <span>{prod.name}</span>
+                                                <span>₹ {prod.price.split(".")[0]}</span>
+                                            </div>
+                                            <AiFillDelete
+                                                fontSize="20px"
+                                                style={{ cursor: "pointer" }}
+                                                onClick={() =>
+                                                    dispatch({
+                                                        type: "REMOVE_FROM_CART",
+                                                        payload: prod,
+                                                    })
+                                                }
+                                            />
+                                        </span>
+                                    ))}
+                                    <Link to="/cart">
+                                        <Button style={{ width: "95%", margin: "0 10px" }}>
+                                            Go To Cart
+                                        </Button>
+                                    </Link>
+                                </>
+                            ) : ( */}
+                            <span style={{ padding: 10 }}>Cart is Empty!</span>
+                            {/* )} */}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Nav>
+                {/* <Button style={{ width: "3rem", height: "3rem", position: "relative" }}
                     variant="outline-primary"
                     className="rounded-circle">
                     <svg
@@ -42,7 +107,7 @@ function Navbar() {
                         }}
                     >6
                     </div>
-                </Button>
+                </Button> */}
 
             </Container>
         </NavbarBootstrap>
