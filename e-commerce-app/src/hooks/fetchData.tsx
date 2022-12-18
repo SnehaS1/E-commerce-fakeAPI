@@ -4,18 +4,18 @@ import get from 'lodash/get';
 import axios from 'axios';
 
 
-export const fetchData = async (url: string) => {
+export const useToFetchtchData = async (url: string) => {
     const [error, setError] = useState<string>('');
     const [apiData, setApiData] = useState(null);
     const [loading, setLoading] = useState(false);
-
+    const baseUrl: string = 'https://fakestoreapi.com/products';
     useEffect(() => {
 
         setLoading(true);
         async function call() {
             try {
                 // const res = await fetch(url);
-                const res = await axios.get(url);
+                const res = await axios.get(baseUrl + url);
                 const data = await get(res, 'data');
                 // const data = 
                 setApiData(data);
@@ -27,8 +27,9 @@ export const fetchData = async (url: string) => {
         }
         call();
 
-    }, [url])
+    }, [url]);    
+    
     return { apiData, loading, error }
 }
 
-export default fetchData
+export default useToFetchtchData;
